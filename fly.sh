@@ -19,8 +19,9 @@ GEN_DIR="${OUT_DIR}/fly"
 WORKING_DIR="${OUT_DIR}/fly"
 
 # new world
-TOOLS_DIR="${FUCHSIA_DIR}/sdk/tools"
-BIN_DIR="${FUCHSIA_DIR}/sdk/bin"
+SDK_DIR="${FUCHSIA_DIR}/sdk"
+TOOLS_DIR="${SDK_DIR}/tools"
+BIN_DIR="${SDK_DIR}/bin"
 
 rm -rf ${PACKAGE_OUT_DIR}
 mkdir -p ${PACKAGE_OUT_DIR}
@@ -31,10 +32,8 @@ mkdir -p ${PACKAGE_OUT_DIR}
 ${TOOLS_DIR}/gen_dot_packages.py \
   --out ${GEN_DIR}/${PACKAGE_NAME}_dart_library.packages \
   --source-dir ${SOURCE_DIR} \
-  --root-build-dir ${OUT_DIR} \
-  --root-gen-dir ${OUT_DIR}/dartlang/gen \
   --package-name ${PACKAGE_NAME} \
-  --deps //third_party/dart-pkg/git/flutter/packages/flutter:flutter //topaz/public/dart/zircon:zircon
+  --prebuilt ${SDK_DIR}/data/dart_library.packages
 
 # TODO: action analyzer
 
